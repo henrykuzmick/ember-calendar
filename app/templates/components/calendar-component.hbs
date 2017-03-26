@@ -1,0 +1,19 @@
+<div class="next" {{action "nextMonth"}}>
+  next
+</div>
+<div class="header clearfix">
+  <div class="header-item">SUN</div>
+  <div class="header-item">MON</div>
+  <div class="header-item">TUE</div>
+  <div class="header-item">WED</div>
+  <div class="header-item">THU</div>
+  <div class="header-item">FRI</div>
+  <div class="header-item">SAT</div>
+</div>
+<div class="monthHolder">
+  <div class="monthSlider">
+    {{#each months as |m|}}
+      {{calendar-month month=m}}
+    {{/each}}
+  </div>
+</div>
