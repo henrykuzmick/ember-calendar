@@ -32,9 +32,10 @@
       </div>
       <div class="monthHolder">
         <div class="monthSlider">
-          {{#each months as |m|}}
-            {{calendar/calendar-month month=m selected=selectedDay selectDay=(action 'selectDay')}}
-          {{/each}}
+          {{ calendar/calendar-month selectedMonth=selectedMonth month=selectedMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+          {{#if newMonth}}
+            {{ calendar/calendar-month selectedMonth=selectedMonth month=newMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+          {{/if}}
         </div>
       </div>
     </div>

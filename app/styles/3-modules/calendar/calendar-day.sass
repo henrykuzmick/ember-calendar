@@ -1,0 +1,43 @@
+.calendar
+  .day
+    text-align: center
+    float: left
+    width: 14.285%
+    height: 60px
+    position: relative
+    background-color: #fbfbfb
+    transition: all 0.3s ease-in-out
+    cursor: pointer
+    &::before
+      content: ""
+      position: absolute
+      width: 30px
+      height: 30px
+      top: 50%
+      left: 50%
+      border-radius: 10px
+      transform: translate(-50%, -50%)
+      border: 2px solid transparent
+    &:hover::before
+      transition: all 0.1s ease-in-out
+      border: 2px solid $primary
+    &.today p
+      color: $primary
+    &.current
+      background-color: white
+      p
+        color: #777
+    &.selected p
+      color: white
+    &.selected::before
+      background-color: $primary
+    p
+      display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      padding: 0
+      margin: 0
+      font-weight: 400
+      color: #bbb

@@ -3,13 +3,22 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['day'],
   classNameBindings: [
-    'current:current',
-    'firstOfNextMonth:firstOfNextMonth'
+    'current',
+    'firstOfNextMonth',
+    'firstOfThisMonth',
+    'lastOfPrevMonth',
+    'selected',
+    'today'
   ],
   init() {
     this._super(...arguments);
     this.number = this.day.format("DD")
-    this.current = this.selected.month() === this.day.month()
+    this.current = this.selectedMonth.isSame(this.day, 'month');
+    this.firstOfNextMonth = this.day.isSame(this.selectedMonth.clone().add('months', 1).date(1), 'day');
+    this.lastOfPrevMonth = this.day.isSame(this.selectedMonth.clone().date(1).subtract('days', 1), 'day');
+    this.firstOfThisMonth = this.day.isSame(this.selectedMonth.clone().date(1), 'day');
+    this.selected = this.day.isSame(this.selectedDay, 'day');
+    this.today = this.day.isSame(moment(), 'day')
   },
   click() {
     this.selectDay(this.day)

@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     this.set('todayWord', this.today.format("dddd, MMMM Do"))
   },
   didRender() {
-    this.$('.clockpicker').timepicker({ 'timeFormat': 'h:i A' });
+    this.$('.clockpicker').timepicker({ 'timeFormat': 'H:i' });
 
   },
   actions: {

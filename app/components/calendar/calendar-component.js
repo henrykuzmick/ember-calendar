@@ -5,17 +5,17 @@ export default Ember.Component.extend({
   actions: {
     nextMonth() {
       if(!this.animating) {
-        let clone = this.months.slice();
-        clone.push(this.months[0].clone().add('months', 1));
-        this.set('months', clone);
+        let clone = this.selectedMonth.clone()
+        clone.add('months', 1);
+        this.set('newMonth', clone);
         this.set('animating', true)
       }
     },
     prevMonth() {
       if(!this.animating) {
-        let clone = this.months.slice();
-        clone.push(this.months[0].clone().subtract('months', 1));
-        this.set('months', clone);
+        let clone = this.selectedMonth.clone()
+        clone.subtract('months', 1);
+        this.set('newMonth', clone);
         this.set('animating', true)
       }
     },
@@ -35,17 +35,22 @@ export default Ember.Component.extend({
   },
   didRender() {
     if(this.animating) {
-      const newPos = this.$('.month').first().find('.firstOfNextMonth').position().top;
-      this.$('.month').first().find('.day').removeClass('current');
+      let newPos;
+      if(this.newMonth.isAfter(this.selectedMonth)) {
+        newPos = this.$('.month').first().find('.first-of-next-month').position().top;
+      } else {
+        newPos = this.$('.month').last().find('.first-of-this-month').position().top * -1;
+      }
+
       this.$('.month').last().css("top", newPos);
       this.$('.monthSlider').animate({
         top: -1 * newPos
-      }, 400, () => {
-        let newMonths = [];
-        newMonths.push(this.months[1]);
+      }, 300, () => {
+        this.set('selectedMonth', this.newMonth);
+        this.set('newMonth', null)
         this.set('animating', false);
-        this.set('months', newMonths);
-        this.set('monthName', this.months[0].format("MMMM"))
+        // TODO: make helper for formating
+        this.set('monthName', this.selectedMonth.format("MMMM"))
         this.$('.monthSlider').css("top", 0);
         this.$('.month').last().css("top", 0);
       })
@@ -53,9 +58,10 @@ export default Ember.Component.extend({
   },
   init() {
     this._super(...arguments);
-    this.months = [moment()];
+    this.selectedMonth = moment();
     this.selectedDay = moment();
-    this.monthName = this.months[0].format("MMMM");
+    // TODO: make helper for formating
+    this.monthName = this.selectedMonth.format("MMMM");
     this.animating = false;
     this.selectedEvents = this.filterEvents();
   },
