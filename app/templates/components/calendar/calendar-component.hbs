@@ -1,0 +1,42 @@
+<div class="left">
+  <div class="events">
+    {{calendar/calendar-events events=selectedEvents today=selectedDay addEvent=(action 'addEvent')}}
+  </div>
+</div>
+<div class="right">
+  <div class="row">
+    <div class="col-xs-4 text-center">
+      <div class="prev" {{action "prevMonth"}}>
+        prev
+      </div>
+    </div>
+    <div class="col-xs-4 text-center">
+      <div class="monthName">
+        {{ monthName }}
+      </div>
+    </div>
+    <div class="col-xs-4 text-center">
+      <div class="next" {{action "nextMonth"}}>
+        next
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="header clearfix">
+        <div class="header-item">SUN</div>
+        <div class="header-item">MON</div>
+        <div class="header-item">TUE</div>
+        <div class="header-item">WED</div>
+        <div class="header-item">THU</div>
+        <div class="header-item">FRI</div>
+        <div class="header-item">SAT</div>
+      </div>
+      <div class="monthHolder">
+        <div class="monthSlider">
+          {{#each months as |m|}}
+            {{calendar/calendar-month month=m selected=selectedDay selectDay=(action 'selectDay')}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

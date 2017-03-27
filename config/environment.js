@@ -6,6 +6,18 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    firebase: {
+      apiKey: "AIzaSyD4FnvVhdxNsyKicuYDCrNfsuSuICwbY74",
+      authDomain: "calendar-13e82.firebaseapp.com",
+      databaseURL: "https://calendar-13e82.firebaseio.com",
+      storageBucket: "calendar-13e82.appspot.com",
+      messagingSenderId: "415595859222"
+    },
+    contentSecurityPolicy: {
+      'script-src': "'self' 'unsafe-eval' apis.google.com",
+      'frame-src': "'self' https://*.firebaseapp.com",
+      'connect-src': "'self' wss://*.firebaseio.com https://*.googleapis.com"
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

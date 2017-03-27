@@ -1,8 +1,9 @@
 *
   margin: 0
   padding: 0
-  font-family: 'Roboto', sans-serif
   box-sizing: border-box
+body
+  background-color: #eee
 .clearfix:after
   visibility: hidden
   display: block
@@ -11,8 +12,17 @@
   clear: both
   height: 0
 .calendar
-  width: 420px
+  display: flex
+  .left
+    width: 40%
+    background-color: pink
+  .right
+    background-color: white
+    padding: 20px
+    width: 60%
   position: relative
+  .events
+    height: 100%
   .monthHolder
     position: relative
     width: 100%
@@ -31,7 +41,7 @@
     width: 100%
     border-bottom: 1px solid #eee
     .header-item
-      width: 60px
+      width: 14.285%
       float: left
       padding-bottom: 10px
       padding-top: 10px
@@ -41,7 +51,7 @@
   .day
     text-align: center
     float: left
-    width: 60px
+    width: 14.285%
     height: 60px
     position: relative
     background-color: #f9f9f9

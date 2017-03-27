@@ -4,7 +4,6 @@ export default Ember.Component.extend({
   days: [],
   totalDays: 42,
   classNames: ['month', 'clearfix'],
-
   didReceiveAttrs() {
     this._super(...arguments);
     this.firstDay = this.month.date(1);
@@ -44,11 +43,6 @@ export default Ember.Component.extend({
   addDay(day) {
     const current = day.month() === this.firstDay.month();
     const firstOfNextMonth = day.format() == this.firstDay.clone().add('months', 1).date(1).format()
-    console.log()
-    this.days.push({
-      number: day.format("DD"),
-      current,
-      firstOfNextMonth
-    });
+    this.days.push(day.clone());
   }
 });

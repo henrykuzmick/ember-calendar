@@ -1,0 +1,19 @@
+<div class="">
+  <h3>{{ todayWord }}</h3>
+</div>
+<form>
+  <div class="form-group">
+    {{input type="text" class="form-control clockpicker" placeholder="@" value=time}}
+  </div>
+  <div class="form-group">
+    <label>Add Event</label>
+    {{input type="text" class="form-control" placeholder="What will you do?" value=body}}
+  </div>
+  <button {{action 'addEvent'}} class="btn btn-default">
+    Submit
+  </button>
+</form>
+{{#each events as |task|}}
+    <h4>{{task.body}}</h4>
+    <p>{{task.time}}</p>
+{{/each}}
