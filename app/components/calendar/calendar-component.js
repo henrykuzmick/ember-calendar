@@ -1,7 +1,47 @@
 import Ember from 'ember';
 export default Ember.Component.extend({
-
   classNames: ['calendar'],
+  init() {
+    this._super(...arguments);
+    this.selectedMonth = moment();
+    this.selectedDay = moment();
+    this.animating = false;
+    this.selectedEvents = this.filterEvents();
+  },
+  didRender() {
+    if(this.animating) {
+      let newPos;
+      if(this.newMonth.isAfter(this.selectedMonth)) {
+        newPos = this.$('.month').first().find('.first-of-next-month').position().top;
+      } else {
+        newPos = this.$('.month').last().find('.first-of-this-month').position().top * -1;
+      }
+      this.$('.month').last().css("top", newPos);
+      this.$('.monthSlider').animate({
+        top: -1 * newPos
+      }, 300, () => {
+        this.set('selectedMonth', this.newMonth);
+        this.set('newMonth', null)
+        this.set('animating', false);
+        this.$('.monthSlider').css("top", 0);
+        this.$('.month').last().css("top", 0);
+      })
+    }
+  },
+  filterEvents() {
+    let filteredEvents = [];
+    this.events.map((event) => {
+      if(moment(event.get('time')).isSame(this.selectedDay, 'day')) {
+        filteredEvents.push(event);
+      }
+    });
+    filteredEvents.sort((a, b) => {
+      a = new Date(a.get('time'));
+      b = new Date(b.get('time'));
+      return a<b ? -1 : a>b ? 1 : 0;
+    });
+    return filteredEvents;
+  },
   actions: {
     nextMonth() {
       if(!this.animating) {
@@ -40,41 +80,5 @@ export default Ember.Component.extend({
         this.set('selectedEvents', this.filterEvents())
       })
     }
-  },
-  didRender() {
-    if(this.animating) {
-      let newPos;
-      if(this.newMonth.isAfter(this.selectedMonth)) {
-        newPos = this.$('.month').first().find('.first-of-next-month').position().top;
-      } else {
-        newPos = this.$('.month').last().find('.first-of-this-month').position().top * -1;
-      }
-      this.$('.month').last().css("top", newPos);
-      this.$('.monthSlider').animate({
-        top: -1 * newPos
-      }, 300, () => {
-        this.set('selectedMonth', this.newMonth);
-        this.set('newMonth', null)
-        this.set('animating', false);
-        this.$('.monthSlider').css("top", 0);
-        this.$('.month').last().css("top", 0);
-      })
-    }
-  },
-  init() {
-    this._super(...arguments);
-    this.selectedMonth = moment();
-    this.selectedDay = moment();
-    this.animating = false;
-    this.selectedEvents = this.filterEvents();
-  },
-  filterEvents() {
-    let filteredEvents = [];
-    this.events.map((event) => {
-      if(moment(event.get('time')).isSame(this.selectedDay, 'day')) {
-        filteredEvents.push(event);
-      }
-    });
-    return filteredEvents;
   }
 });

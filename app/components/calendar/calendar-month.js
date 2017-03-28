@@ -8,7 +8,6 @@ export default Ember.Component.extend({
     this._super(...arguments);
     this.firstDay = this.month.date(1);
     this.fillDays();
-    console.log('hello from month');
   },
   fillDays() {
     this.set('days', []);
@@ -43,7 +42,6 @@ export default Ember.Component.extend({
   },
   addDay(day) {
     const current = day.month() === this.firstDay.month();
-    const firstOfNextMonth = day.format() == this.firstDay.clone().add('months', 1).date(1).format()
     this.days.push(day.clone());
   }
 });

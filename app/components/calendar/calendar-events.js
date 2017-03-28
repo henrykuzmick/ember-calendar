@@ -14,6 +14,8 @@ export default Ember.Component.extend({
       let time = this.get('time');
       if($.trim(body)) {
         this.addEvent(body, time);
+        this.set('body', '');
+        this.set('time', '09:00')
       }
     },
     removeEvent: function(id) {

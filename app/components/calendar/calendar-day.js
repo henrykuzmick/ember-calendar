@@ -20,11 +20,6 @@ export default Ember.Component.extend({
     this.today = this.day.isSame(moment(), 'day')
     this.eventsToday = this.filterEvents();
   },
-  didReceiveAttrs() {
-    console.log('hello');
-    this._super(...arguments);
-    this.set('eventsToday', this.filterEvents());
-  },
   click() {
     this.selectDay(this.day)
   },
