@@ -1,2 +1,6 @@
-<p>{{format-date day 'DD'}}
-</p>
+<p>{{format-date day 'DD'}}</p>
+<div class="eventDots">
+  {{#each eventsToday as |event|}}
+    <div class="dot"></div>
+  {{/each}}
+</div>

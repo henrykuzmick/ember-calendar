@@ -23,7 +23,7 @@ export default Ember.Component.extend({
       this.set('selectedDay', day);
       this.set('selectedEvents', this.filterEvents())
     },
-    addEvent: function(body, time) {
+    addEvent(body, time) {
       const newEvent = this.store.createRecord('event', {
         body: body,
         time: new Date(this.selectedDay.format("YYYY,MM,DD,") + time)
@@ -31,6 +31,14 @@ export default Ember.Component.extend({
       newEvent.save().then(() => {
         this.set('selectedEvents', this.filterEvents())
       });
+    },
+    removeEvent(id) {
+      this.store.find('event', id).then((event) => {
+        event.deleteRecord();
+        return event.save();
+      }).then((event) => {
+        this.set('selectedEvents', this.filterEvents())
+      })
     }
   },
   didRender() {

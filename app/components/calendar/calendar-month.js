@@ -8,6 +8,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
     this.firstDay = this.month.date(1);
     this.fillDays();
+    console.log('hello from month');
   },
   fillDays() {
     this.set('days', []);

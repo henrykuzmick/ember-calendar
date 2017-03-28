@@ -18,8 +18,23 @@ export default Ember.Component.extend({
     this.firstOfThisMonth = this.day.isSame(this.selectedMonth.clone().date(1), 'day');
     this.selected = this.day.isSame(this.selectedDay, 'day');
     this.today = this.day.isSame(moment(), 'day')
+    this.eventsToday = this.filterEvents();
+  },
+  didReceiveAttrs() {
+    console.log('hello');
+    this._super(...arguments);
+    this.set('eventsToday', this.filterEvents());
   },
   click() {
     this.selectDay(this.day)
+  },
+  filterEvents() {
+    let filteredEvents = [];
+    this.events.map((event) => {
+      if(moment(event.get('time')).isSame(this.day, 'day')) {
+        filteredEvents.push(event);
+      }
+    });
+    return filteredEvents;
   }
 });

@@ -1,5 +1,11 @@
 <div class="days">
   {{#each days as |d|}}
-    {{calendar/calendar-day selectedMonth=selectedMonth day=d selectedDay=selectedDay selectDay=selectDay}}
+    {{calendar/calendar-day
+      selectedMonth=selectedMonth
+      day=d
+      events=events
+      selectedDay=selectedDay
+      selectDay=selectDay
+    }}
   {{/each}}
 </div>

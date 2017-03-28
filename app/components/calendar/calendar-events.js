@@ -1,14 +1,23 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  time: '09:00',
   didRender() {
-    this.$('.clockpicker').timepicker({ 'timeFormat': 'H:i' });
+    this.$('.clockpicker').timepicker({
+      'timeFormat': 'H:i',
+      'scrollDefault': '09:00'
+    });
   },
   actions: {
     addEvent: function() {
       let body = this.get('body');
       let time = this.get('time');
-      this.addEvent(body, time);
+      if($.trim(body)) {
+        this.addEvent(body, time);
+      }
+    },
+    removeEvent: function(id) {
+      this.removeEvent(id)
     }
   }
 });

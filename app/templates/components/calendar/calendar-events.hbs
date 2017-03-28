@@ -2,19 +2,22 @@
   <h1>{{format-date today 'dddd'}},<br>{{format-date today 'MMMM Do'}}</h1>
 </div>
 <form>
-  <div class="event-input-group">
-    {{input type="text" class="event-input event-time clockpicker" placeholder="@" value=time}}
+  <div class="event-input-group clearfix">
+    {{input type="text" class="event-input event-time clockpicker" value=time}}
     {{input type="text" class="event-input event-body" placeholder="What will you do?" value=body}}
     <button {{action 'addEvent'}} class="event-input event-submit">
-      +
+      <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
   </div>
 </form>
 {{#if events}}
-  {{#each events as |task|}}
+  {{#each events as |event|}}
     <div class="event-item clearfix">
-      <div class="event-time">{{format-date task.time 'HH:mm'}}</div>
-      <div class="event-body">{{task.body}}</div>
+      <div class="event-time">{{format-date event.time 'HH:mm'}}</div>
+      <div class="event-body">{{event.body}}</div>
+      <div {{action 'removeEvent' event.id}} class="event-delete">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
     </div>
   {{/each}}
 {{else}}

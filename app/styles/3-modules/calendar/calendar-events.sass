@@ -29,9 +29,10 @@
         border-bottom: 1px solid darken(white, 10%)
         color: white
         height: 40px
-        margin-left: -4px
+        float: left
         outline: none
         transition: all 0.2s ease-out
+        font-size: 14px
         @include placeholder
           color: darken(white, 10%)
       .event-input:focus
@@ -40,19 +41,27 @@
           color: white
       .event-time
         width: 20%
-        margin-right: 5px
-        text-align: center
       .event-body
-        width: calc(70% - 5px)
+        width: calc(70%)
       .event-submit
         width: 10%
+        text-align: right
+        cursor: pointer
+        &:hover
+          opacity: 0.8
     .event-item
       font-weight: 300
       display: block
       line-height: 30px
+      font-size: 14px
       .event-body
         float: left
       .event-time
         float: left
         font-weight: 500
         margin-right: 10px
+      .event-delete
+        float: right
+        cursor: pointer
+        &:hover
+          opacity: 0.8

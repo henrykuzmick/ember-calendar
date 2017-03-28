@@ -1,6 +1,11 @@
 <div class="left">
   <div class="events">
-    {{calendar/calendar-events events=selectedEvents today=selectedDay addEvent=(action 'addEvent')}}
+    {{calendar/calendar-events
+      events=selectedEvents
+      today=selectedDay
+      addEvent=(action 'addEvent')
+      removeEvent=(action 'removeEvent')
+    }}
   </div>
 </div>
 <div class="right">
@@ -38,9 +43,23 @@
     </div>
     <div class="monthHolder">
       <div class="monthSlider">
-        {{ calendar/calendar-month selectedMonth=selectedMonth month=selectedMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+        {{ calendar/calendar-month
+          selectedMonth=selectedMonth
+          month=selectedMonth
+          events=events
+          selectedEvents=selectedEvents
+          selectedDay=selectedDay
+          selectDay=(action 'selectDay')
+        }}
         {{#if newMonth}}
-          {{ calendar/calendar-month selectedMonth=selectedMonth month=newMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+          {{ calendar/calendar-month
+             selectedMonth=selectedMonth
+             month=newMonth
+             events=events
+             selectedEvents=selectedEvents
+             selectedDay=selectedDay
+             selectDay=(action 'selectDay')
+           }}
         {{/if}}
       </div>
     </div>
