@@ -8,6 +8,17 @@
     background-color: #fbfbfb
     transition: all 0.3s ease-in-out
     cursor: pointer
+    font-size: 14px
+    p
+      display: block
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      padding: 0
+      margin: 0
+      font-weight: 400
+      color: #bbb
     &::before
       content: ""
       position: absolute
@@ -21,23 +32,13 @@
     &:hover::before
       transition: all 0.1s ease-in-out
       border: 2px solid $primary
-    &.today p
-      color: $primary
     &.current
       background-color: white
       p
         color: #777
+    &.today > p
+      color: $primary
     &.selected p
       color: white
     &.selected::before
       background-color: $primary
-    p
-      display: block
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
-      padding: 0
-      margin: 0
-      font-weight: 400
-      color: #bbb

@@ -1,5 +1,5 @@
 <div class="">
-  <h3>{{ todayWord }}</h3>
+  <h1>{{format-date today 'dddd'}},<br>{{format-date today 'MMMM Do'}}</h1>
 </div>
 <form>
   <div class="event-input-group">
@@ -10,7 +10,15 @@
     </button>
   </div>
 </form>
-{{#each events as |task|}}
-    <h4>{{task.body}}</h4>
-    <p>{{task.time}}</p>
-{{/each}}
+{{#if events}}
+  {{#each events as |task|}}
+    <div class="event-item clearfix">
+      <div class="event-time">{{format-date task.time 'HH:mm'}}</div>
+      <div class="event-body">{{task.body}}</div>
+    </div>
+  {{/each}}
+{{else}}
+  <div class="event-item clearfix">
+    <div class="event-body">No Events,<br>Enjoy your free day!</div>
+  </div>
+{{/if}}

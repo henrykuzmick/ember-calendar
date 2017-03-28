@@ -4,39 +4,44 @@
   </div>
 </div>
 <div class="right">
-  <div class="row">
-    <div class="col-xs-4 text-center">
+  <div class="header clearfix">
+    <div class="col-12">
+      <div class="year">
+        {{format-date selectedMonth 'YYYY'}}
+      </div>
+    </div>
+    <div class="col-4">
       <div class="prev" {{action "prevMonth"}}>
-        prev
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
       </div>
     </div>
-    <div class="col-xs-4 text-center">
+    <div class="col-4">
       <div class="monthName">
-        {{ monthName }}
+        {{format-date selectedMonth 'MMMM'}}
       </div>
     </div>
-    <div class="col-xs-4 text-center">
+    <div class="col-4">
       <div class="next" {{action "nextMonth"}}>
-        next
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
       </div>
     </div>
-    <div class="col-xs-12">
-      <div class="header clearfix">
-        <div class="header-item">SUN</div>
-        <div class="header-item">MON</div>
-        <div class="header-item">TUE</div>
-        <div class="header-item">WED</div>
-        <div class="header-item">THU</div>
-        <div class="header-item">FRI</div>
-        <div class="header-item">SAT</div>
-      </div>
-      <div class="monthHolder">
-        <div class="monthSlider">
-          {{ calendar/calendar-month selectedMonth=selectedMonth month=selectedMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
-          {{#if newMonth}}
-            {{ calendar/calendar-month selectedMonth=selectedMonth month=newMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
-          {{/if}}
-        </div>
+  </div>
+  <div class="col-12">
+    <div class="days clearfix">
+      <div class="day-item">SUN</div>
+      <div class="day-item">MON</div>
+      <div class="day-item">TUE</div>
+      <div class="day-item">WED</div>
+      <div class="day-item">THU</div>
+      <div class="day-item">FRI</div>
+      <div class="day-item">SAT</div>
+    </div>
+    <div class="monthHolder">
+      <div class="monthSlider">
+        {{ calendar/calendar-month selectedMonth=selectedMonth month=selectedMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+        {{#if newMonth}}
+          {{ calendar/calendar-month selectedMonth=selectedMonth month=newMonth selectedDay=selectedDay selectDay=(action 'selectDay') }}
+        {{/if}}
       </div>
     </div>
   </div>

@@ -7,7 +7,6 @@ module.exports = function(defaults) {
       extension: "sass"
     }
   });
-  app.import('bower_components/bootstrap/dist/css/bootstrap.css')
   app.import('bower_components/moment/min/moment.min.js')
   app.import('bower_components/jt.timepicker/jquery.timepicker.css')
   app.import('bower_components/jt.timepicker/jquery.timepicker.js')

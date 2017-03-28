@@ -5,7 +5,13 @@
     position: relative
     padding: 20px
     padding-bottom: 50px
-    padding-top: 50px
+    padding-top: 40px
+    text-align: left
+    color: white
+    h1
+      font-weight: 300
+      font-size: 30px
+      margin-bottom: 80px
     &::after
       content: ""
       height: 4px
@@ -15,27 +21,38 @@
       bottom: 0
       left: 0
       opacity: 0.5
-  .event-input-group
-    .event-input
-      border: 0
-      background: transparent
-      border-bottom: 1px solid darken(white, 10%)
-      color: white
-      height: 40px
-      margin-left: -4px
-      outline: none
-      transition: all 0.2s ease-out
-      @include placeholder
-        color: darken(white, 10%)
-    .event-input:focus
-      border-bottom: 1px solid white
-      @include placeholder
+    .event-input-group
+      margin-bottom: 80px
+      .event-input
+        border: 0
+        background: transparent
+        border-bottom: 1px solid darken(white, 10%)
         color: white
-    .event-time
-      width: 20%
-      margin-right: 5px
-      text-align: center
-    .event-body
-      width: calc(70% - 5px)
-    .event-submit
-      width: 10%
+        height: 40px
+        margin-left: -4px
+        outline: none
+        transition: all 0.2s ease-out
+        @include placeholder
+          color: darken(white, 10%)
+      .event-input:focus
+        border-bottom: 1px solid white
+        @include placeholder
+          color: white
+      .event-time
+        width: 20%
+        margin-right: 5px
+        text-align: center
+      .event-body
+        width: calc(70% - 5px)
+      .event-submit
+        width: 10%
+    .event-item
+      font-weight: 300
+      display: block
+      line-height: 30px
+      .event-body
+        float: left
+      .event-time
+        float: left
+        font-weight: 500
+        margin-right: 10px

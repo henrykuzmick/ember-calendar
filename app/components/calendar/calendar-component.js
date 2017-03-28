@@ -41,7 +41,6 @@ export default Ember.Component.extend({
       } else {
         newPos = this.$('.month').last().find('.first-of-this-month').position().top * -1;
       }
-
       this.$('.month').last().css("top", newPos);
       this.$('.monthSlider').animate({
         top: -1 * newPos
@@ -49,8 +48,6 @@ export default Ember.Component.extend({
         this.set('selectedMonth', this.newMonth);
         this.set('newMonth', null)
         this.set('animating', false);
-        // TODO: make helper for formating
-        this.set('monthName', this.selectedMonth.format("MMMM"))
         this.$('.monthSlider').css("top", 0);
         this.$('.month').last().css("top", 0);
       })
@@ -60,16 +57,16 @@ export default Ember.Component.extend({
     this._super(...arguments);
     this.selectedMonth = moment();
     this.selectedDay = moment();
-    // TODO: make helper for formating
-    this.monthName = this.selectedMonth.format("MMMM");
     this.animating = false;
     this.selectedEvents = this.filterEvents();
   },
   filterEvents() {
-    return this.events.map((event) => {
-      if(moment(event.get('time')).format("YYYY-MM-DD") === this.selectedDay.format("YYYY-MM-DD")) {
-        return event;
+    let filteredEvents = [];
+    this.events.map((event) => {
+      if(moment(event.get('time')).isSame(this.selectedDay, 'day')) {
+        filteredEvents.push(event);
       }
     });
+    return filteredEvents;
   }
 });

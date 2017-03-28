@@ -1,5 +1,7 @@
 {
   "name": "calendar",
   "dependencies": {
+    "moment": "^2.18.1",
+    "jt.timepicker": "jquery-timepicker-jt#^1.11.10"
   }
 }

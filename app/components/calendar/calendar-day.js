@@ -12,7 +12,6 @@ export default Ember.Component.extend({
   ],
   init() {
     this._super(...arguments);
-    this.number = this.day.format("DD")
     this.current = this.selectedMonth.isSame(this.day, 'month');
     this.firstOfNextMonth = this.day.isSame(this.selectedMonth.clone().add('months', 1).date(1), 'day');
     this.lastOfPrevMonth = this.day.isSame(this.selectedMonth.clone().date(1).subtract('days', 1), 'day');

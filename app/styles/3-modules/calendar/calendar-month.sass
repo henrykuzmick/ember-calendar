@@ -1,8 +1,27 @@
 .calendar
   .header
+    margin-bottom: 20px
+    .year
+      text-align: right
+      color: #ddd
+      font-size: 16px
+      font-weight: 300
+      padding: 20px
+      padding-top: 10px
+    .monthName
+      text-transform: uppercase
+      color: #555
+      font-size: 16px
+    .prev, .next
+      font-size: 20px
+      color: #555
+      cursor: pointer
+      &:hover
+        color: #999
+  .days
     width: 100%
     border-bottom: 1px solid #eee
-    .header-item
+    .day-item
       width: 14.285%
       float: left
       padding-bottom: 10px
@@ -14,7 +33,6 @@
     background-color: white
     padding: 20px
     width: 60%
-    padding-top: 50px
     padding-bottom: 50px
     position: relative
     &::after
