@@ -3,4 +3,7 @@
   {{#each eventsToday as |event|}}
     <div class="dot"></div>
   {{/each}}
+  {{#if overlimit}}
+    <div class="dot red"></div>
+  {{/if}}
 </div>

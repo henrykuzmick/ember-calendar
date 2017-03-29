@@ -10,6 +10,8 @@ export default Ember.Component.extend({
     'selected',
     'today'
   ],
+  overlimit: false,
+  maxdots: 5,
   init() {
     this._super(...arguments);
     this.current = this.selectedMonth.isSame(this.day, 'month');
@@ -30,6 +32,11 @@ export default Ember.Component.extend({
         filteredEvents.push(event);
       }
     });
+    if(filteredEvents.length > this.maxdots) {
+      this.overlimit = true;
+    }
+    filteredEvents.splice(this.maxdots);
+
     return filteredEvents;
   }
 });

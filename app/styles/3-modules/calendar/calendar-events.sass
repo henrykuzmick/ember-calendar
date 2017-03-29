@@ -1,4 +1,13 @@
 .calendar
+  &::after
+    content: ""
+    height: 4px
+    width: 100%
+    background-color: rgba(black, 0.4)
+    position: absolute
+    bottom: 0
+    left: 0
+    opacity: 0.5
   .left
     width: 40%
     background-color: $primary
@@ -8,19 +17,12 @@
     padding-top: 40px
     text-align: left
     color: white
+    max-height: 600px
+    overflow: scroll
     h1
       font-weight: 300
       font-size: 30px
       margin-bottom: 80px
-    &::after
-      content: ""
-      height: 4px
-      width: 100%
-      background-color: darken($primary, 30%)
-      position: absolute
-      bottom: 0
-      left: 0
-      opacity: 0.5
     .event-input-group
       margin-bottom: 80px
       .event-input
